@@ -35,9 +35,14 @@ def film_tracker():
 
     # Открывает ярлык Chrome
     subprocess.run(command, shell=True)
-
+        
     chrome_options = Options()
+    user_data_dir = "C:\\selenum\\ChromeProfile"
+    
+    chrome_options.add_argument(f"user-data-dir={user_data_dir}")
     chrome_options.add_experimental_option("debuggerAddress", DEBUGGER_ADDRESS)
+    chrome_options.add_argument("start-minimized")
+
     # Адрес chrome драйвера
     chrome_driver = CHROME_DRIVER_ADRESS
     service = Service(executable_path=chrome_driver)
