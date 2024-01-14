@@ -29,19 +29,10 @@ def send_message(text, film_id):
             print(e)
 
 
-def film_tracker():
-    shortcut_path = "Distill.lnk"
-    command = f'start "" "{shortcut_path}"'
-
-    # Открывает ярлык Chrome
-    subprocess.run(command, shell=True)
-        
+def film_tracker():       
     chrome_options = Options()
     user_data_dir = "C:\\selenum\\ChromeProfile"
-    
     chrome_options.add_argument(f"user-data-dir={user_data_dir}")
-    chrome_options.add_experimental_option("debuggerAddress", DEBUGGER_ADDRESS)
-    chrome_options.add_argument("start-minimized")
 
     # Адрес chrome драйвера
     chrome_driver = CHROME_DRIVER_ADRESS
