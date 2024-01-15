@@ -5,7 +5,7 @@ from time import sleep
 import re
 import os
 from datetime import datetime
-from settings import USER_DATA_DIR, BOT_APP, CHROME_DRIVER_ADRESS
+from settings import USER_PROFILE_DIR, BOT_APP, CHROME_DRIVER_ADRESS
 from helpers.link_decorator import LinkDecorator
 from helpers.link_creator import LinkCreator
 from helpers.custom_keyboard import CustomKeyboard
@@ -19,17 +19,15 @@ def open_distill(driver):
     driver.get('chrome-extension://inlikjemeeknofckkjolnjbpehgadgge/ui/inbox.html#/w/0/list/all/')
     sleep(5)
 
-def first_launch(profile_path):
+def first_launch():
     chromedriver_path = CHROME_DRIVER_ADRESS
 
-    extension_path = 'tracker\INLIKJEMEEKNOFCKKJOLNJBPEHGADGGE_3_8_8_0.crx'
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_extension(extension_path)
-    chrome_options.add_argument(f"--user-data-dir={profile_path}")
+    chrome_options.add_argument(f"--user-data-dir={USER_PROFILE_DIR}")
 
     service = Service(executable_path=chromedriver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
-    driver.get("https://www.google.com")
+    driver.get("https://chromewebstore.google.com/detail/distill-web-monitor/inlikjemeeknofckkjolnjbpehgadgge")
     print('Зайдите в Distill и импортируйте файл distill_settings.json в настройках')
     print('После этого перезапустите программу')
     while True:
@@ -48,14 +46,12 @@ def send_message(text, film_id):
 
 
 def film_tracker():       
-    cwd = os.getcwd()
-    profile_path = os.path.join(cwd, "tracker\chrome_profile")
 
-    if not Path(profile_path).exists():
-        first_launch(profile_path)
+    if not Path(USER_PROFILE_DIR).exists():
+        first_launch()
 
     chrome_options = Options()
-    chrome_options.add_argument(f"user-data-dir={USER_DATA_DIR}")
+    chrome_options.add_argument(f"user-data-dir={USER_PROFILE_DIR}")
 
     # Адрес chrome драйвера
     chrome_driver = CHROME_DRIVER_ADRESS
