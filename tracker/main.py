@@ -3,19 +3,37 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from time import sleep
 import re
-import subprocess
+import os
 from datetime import datetime
-from settings import DEBUGGER_ADDRESS, BOT_APP, CHROME_DRIVER_ADRESS
+from settings import USER_DATA_DIR, BOT_APP, CHROME_DRIVER_ADRESS
 from helpers.link_decorator import LinkDecorator
 from helpers.link_creator import LinkCreator
 from helpers.custom_keyboard import CustomKeyboard
 from api_requests.api_requests import add_film_to_django_db, get_list_of_all_films, get_all_user_ids
+from pathlib import Path
+
 
 PATTERN = r"(.*)\s*\b(?:\s)?(?:\.|\(|\s)(202[1234])\b\s*(?:\)|\.|\s*)"
 
 def open_distill(driver):
     driver.get('chrome-extension://inlikjemeeknofckkjolnjbpehgadgge/ui/inbox.html#/w/0/list/all/')
     sleep(5)
+
+def first_launch(profile_path):
+    chromedriver_path = CHROME_DRIVER_ADRESS
+
+    extension_path = 'tracker\INLIKJEMEEKNOFCKKJOLNJBPEHGADGGE_3_8_8_0.crx'
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_extension(extension_path)
+    chrome_options.add_argument(f"--user-data-dir={profile_path}")
+
+    service = Service(executable_path=chromedriver_path)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.get("https://www.google.com")
+    print('Зайдите в Distill и импортируйте файл distill_settings.json в настройках')
+    print('После этого перезапустите программу')
+    while True:
+        pass
 
 
 def send_message(text, film_id):
@@ -30,9 +48,14 @@ def send_message(text, film_id):
 
 
 def film_tracker():       
+    cwd = os.getcwd()
+    profile_path = os.path.join(cwd, "tracker\chrome_profile")
+
+    if not Path(profile_path).exists():
+        first_launch(profile_path)
+
     chrome_options = Options()
-    user_data_dir = "C:\\selenum\\ChromeProfile"
-    chrome_options.add_argument(f"user-data-dir={user_data_dir}")
+    chrome_options.add_argument(f"user-data-dir={USER_DATA_DIR}")
 
     # Адрес chrome драйвера
     chrome_driver = CHROME_DRIVER_ADRESS
@@ -44,7 +67,6 @@ def film_tracker():
 
     while True:
         response = get_list_of_all_films()
-        # films_json = response['results']
         db_films_titles = [film['title'] for film in response]
         films_from_selenium = []
 

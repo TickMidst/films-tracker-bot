@@ -1,10 +1,10 @@
 import requests
 import json
-from settings import BASE_URL
+from settings import BASE_DJANGO_URL
 
 
 def get_all_user_ids():
-    url = f'{BASE_URL}botusers/'
+    url = f'{BASE_DJANGO_URL}botusers/'
     response = requests.get(url)
     telegram_ids = [el['user_id'] for el in response.json()]
 
@@ -12,7 +12,7 @@ def get_all_user_ids():
 
 
 def add_new_bot_user(user_id):
-    url = f'{BASE_URL}botusers/'
+    url = f'{BASE_DJANGO_URL}botusers/'
     data = {
         "user_id": user_id
     }
@@ -22,7 +22,7 @@ def add_new_bot_user(user_id):
 
 def add_film_to_django_db(title, year):
     """"Добавляет фильм в базу, возвращает ID фильма"""
-    url = f'{BASE_URL}allfilms/'
+    url = f'{BASE_DJANGO_URL}allfilms/'
 
     data = {
         "title": title,
@@ -38,7 +38,7 @@ def add_film_to_django_db(title, year):
 
 def change_category_of_the_film(film_id, category=None):
     """"Меняет категорию фильма"""
-    url = f'{BASE_URL}allfilms/{film_id}/'
+    url = f'{BASE_DJANGO_URL}allfilms/{film_id}/'
     response = requests.get(url)
     response_json = response.json()
     response_json['category'] = category
@@ -48,14 +48,14 @@ def change_category_of_the_film(film_id, category=None):
 
 def get_list_of_all_films():
     """"Загружает список всех фильмов из базы для выявления новых"""
-    url = f'{BASE_URL}allfilms/'
+    url = f'{BASE_DJANGO_URL}allfilms/'
     response = requests.get(url)
     return response.json()
 
 
 def show_list_of_requested_films(endpoint_url):
     """"Возвращает запрошенный список фильмов"""
-    url = f'{BASE_URL}{endpoint_url}'
+    url = f'{BASE_DJANGO_URL}{endpoint_url}'
     list_of_films = []
     response = requests.get(url)
     response_json = response.json()
@@ -67,7 +67,7 @@ def show_list_of_requested_films(endpoint_url):
 
 def show_list_of_last_10_films():
     """"Возвращает список последних десяти фильмов"""
-    url = f'{BASE_URL}lastfilms/'
+    url = f'{BASE_DJANGO_URL}lastfilms/'
     list_of_films = []
     response = requests.get(url)
     respons_json = response.json()
