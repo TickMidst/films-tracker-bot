@@ -40,8 +40,6 @@ def bot_handler():
         film_id = data[1]
         change_category_of_the_film(film_id, 1)
         callback_query.answer(format('Категория изменена на "Плохая"'))
-        keyboard = CustomKeyboard(film_id)
-        callback_query.edit_message_reply_markup(keyboard)
 
     @BOT_HANDLER_APP.on_callback_query(filters.regex(r'^change_category_to_good\|'))
     def a(client, callback_query):
@@ -49,8 +47,6 @@ def bot_handler():
         film_id = data[1]
         change_category_of_the_film(film_id, 2)
         callback_query.answer(format('Категория изменена на "Хорошая"'))
-        keyboard = CustomKeyboard(film_id)
-        callback_query.edit_message_reply_markup(keyboard)
 
     @BOT_HANDLER_APP.on_callback_query(filters.regex(r'^change_category_to_null\|'))
     def a(client, callback_query):
@@ -58,8 +54,5 @@ def bot_handler():
         film_id = data[1]
         change_category_of_the_film(film_id)
         callback_query.answer(format('Категория убрана'))
-        keyboard = CustomKeyboard(film_id)
-
-        callback_query.edit_message_reply_markup(keyboard)
 
     BOT_HANDLER_APP.run()

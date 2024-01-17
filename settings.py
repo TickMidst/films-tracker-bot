@@ -9,7 +9,6 @@ BOT_TOKEN = config('BOT_TOKEN')
 CHROME_DRIVER_ADRESS = "C:\\chromedriver.exe"
 
 BASE_DIR = os.getcwd()
-
 USER_PROFILE_DIR = os.path.join(BASE_DIR, "tracker\chrome_profile")
 
 

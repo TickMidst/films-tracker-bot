@@ -24,11 +24,12 @@ def first_launch():
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument(f"--user-data-dir={USER_PROFILE_DIR}")
-
+    chrome_options.add_argument('--ignore-certificate-errors-spki-list')
     service = Service(executable_path=chromedriver_path)
     driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.maximize_window()
     driver.get("https://chromewebstore.google.com/detail/distill-web-monitor/inlikjemeeknofckkjolnjbpehgadgge")
-    print('Зайдите в Distill и импортируйте файл distill_settings.json в настройках')
+    print('Установите расширение Distill, затем перейдите в него и импортируйте файл distill_settings.json в настройках')
     print('После этого перезапустите программу')
     while True:
         pass
@@ -52,6 +53,7 @@ def film_tracker():
 
     chrome_options = Options()
     chrome_options.add_argument(f"user-data-dir={USER_PROFILE_DIR}")
+    chrome_options.add_argument('--ignore-certificate-errors-spki-list')
 
     # Адрес chrome драйвера
     chrome_driver = CHROME_DRIVER_ADRESS
