@@ -9,6 +9,7 @@ selenium = "*"
 python-decouple = "*"
 requests = "*"
 tgcrypto = "*"
+pytelegrambotapi = "*"
 
 [dev-packages]
 

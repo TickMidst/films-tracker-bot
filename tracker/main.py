@@ -5,7 +5,7 @@ from time import sleep
 import re
 import os
 from datetime import datetime
-from settings import USER_PROFILE_DIR, BOT_APP, CHROME_DRIVER_ADRESS
+from settings import USER_PROFILE_DIR, CHROME_DRIVER_ADRESS, tele_bot
 from helpers.link_decorator import LinkDecorator
 from helpers.link_creator import LinkCreator
 from helpers.custom_keyboard import CustomKeyboard
@@ -39,9 +39,8 @@ def send_message(text, film_id):
     telegram_ids = get_all_user_ids()
     for id in telegram_ids:
         try:
-            with BOT_APP:
-                keyboard = CustomKeyboard(film_id)
-                BOT_APP.send_message(chat_id=id, text=text, reply_markup=keyboard, disable_web_page_preview=True)
+            keyboard = CustomKeyboard(film_id)
+            tele_bot.send_message(chat_id=id, text=text, reply_markup=keyboard, disable_web_page_preview=True, parse_mode='HTML')
         except Exception as e:
             print(e)
 

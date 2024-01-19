@@ -1,6 +1,6 @@
 from os import system
 import multiprocessing
-from settings import BOT_APP
+from settings import tele_bot
 from bot_handler.main import bot_handler
 from tracker.main import film_tracker
 
@@ -16,7 +16,7 @@ def main():
         p2.start()
         p1.join()
         p2.join()
-        BOT_APP.run()
+        tele_bot.polling(non_stop=True)
     except Exception as e:
         print(e)
 
