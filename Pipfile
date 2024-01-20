@@ -4,11 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pyrogram = "*"
 selenium = "*"
 python-decouple = "*"
 requests = "*"
-tgcrypto = "*"
 pytelegrambotapi = "*"
 
 [dev-packages]
