@@ -12,12 +12,13 @@ from helpers.custom_keyboard import CustomKeyboard
 from api_requests.api_requests import add_film_to_django_db, get_list_of_all_films, get_all_user_ids
 from pathlib import Path
 
-
 PATTERN = r"(.*)\s*\b(?:\s)?(?:\.|\(|\s)(202[1234])\b\s*(?:\)|\.|\s*)"
+
 
 def open_distill(driver):
     driver.get('chrome-extension://inlikjemeeknofckkjolnjbpehgadgge/ui/inbox.html#/w/0/list/all/')
     sleep(5)
+
 
 def first_launch():
     chromedriver_path = CHROME_DRIVER_ADRESS
@@ -29,7 +30,8 @@ def first_launch():
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.maximize_window()
     driver.get("https://chromewebstore.google.com/detail/distill-web-monitor/inlikjemeeknofckkjolnjbpehgadgge")
-    print('Установите расширение Distill, затем перейдите в него и импортируйте файл distill_settings.json в настройках')
+    print(
+        'Установите расширение Distill, затем перейдите на его страницу и импортируйте файл distill_settings.json в настройках')
     print('После этого перезапустите программу')
     while True:
         pass
@@ -40,13 +42,13 @@ def send_message(text, film_id):
     for id in telegram_ids:
         try:
             keyboard = CustomKeyboard(film_id)
-            BOT.send_message(chat_id=id, text=text, reply_markup=keyboard, disable_web_page_preview=True, parse_mode='HTML')
+            BOT.send_message(chat_id=id, text=text, reply_markup=keyboard, disable_web_page_preview=True,
+                             parse_mode='HTML')
         except Exception as e:
             print(e)
 
 
-def film_tracker():       
-
+def film_tracker():
     if not Path(USER_PROFILE_DIR).exists():
         first_launch()
 

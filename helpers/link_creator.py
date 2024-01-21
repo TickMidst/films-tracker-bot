@@ -2,7 +2,9 @@ from .link_decorator import LinkDecorator
 
 OPENSUBS = 'https://www.opensubtitles.org'
 
+
 class LinkCreator:
+    @staticmethod
     def create_link_for_imdb(film_name):
         """ Создаёт ссылку для поиска по IMDB """
         mod_film_name = LinkDecorator.replace_spaces_with_percent20(film_name)
@@ -10,6 +12,7 @@ class LinkCreator:
         result_url = f'<a href="{url}" target="_blank">IMDB</a>'
         return result_url
 
+    @staticmethod
     def create_link_for_opensubs(film_name):
         """ Создаёт ссылку для поиска по opensubs """
         raw_search_query = f'"{film_name}" site:{OPENSUBS}'
