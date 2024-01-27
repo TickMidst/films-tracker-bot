@@ -3,7 +3,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from time import sleep
 import re
-import os
 from datetime import datetime
 from settings import USER_PROFILE_DIR, CHROME_DRIVER_ADRESS, BOT_NOTIFIER
 from helpers.link_decorator import LinkDecorator
@@ -30,9 +29,7 @@ def first_launch():
     driver = webdriver.Chrome(service=service, options=chrome_options)
     driver.maximize_window()
     driver.get("https://chromewebstore.google.com/detail/distill-web-monitor/inlikjemeeknofckkjolnjbpehgadgge")
-    print(
-        'Установите расширение Distill, затем перейдите на его страницу и импортируйте файл distill_settings.json в настройках')
-    print('После этого перезапустите программу')
+    print('Следуйте инструкциям пункта "Первый запуск"')
     while True:
         pass
 

@@ -4,6 +4,7 @@ from settings import BASE_DJANGO_URL
 
 
 def get_all_user_ids():
+    """"Возвращает список всех пользователей бота"""
     url = f'{BASE_DJANGO_URL}botusers/'
     response = requests.get(url)
     telegram_ids = [el['user_id'] for el in response.json()]
@@ -12,6 +13,7 @@ def get_all_user_ids():
 
 
 def add_new_bot_user(user_id):
+    """"Добавляет нового пользователя в базу"""
     url = f'{BASE_DJANGO_URL}botusers/'
     data = {
         "user_id": user_id
