@@ -5,8 +5,8 @@ import telebot
 # Токен бота
 BOT_TOKEN = config('BOT_TOKEN')
 
-BOT = telebot.TeleBot(BOT_TOKEN)
-BOT_2 = telebot.TeleBot(BOT_TOKEN)
+BOT_NOTIFIER = telebot.TeleBot(BOT_TOKEN)
+BOT_LISTENER = telebot.TeleBot(BOT_TOKEN)
 
 # Адрес вашего chromedriver
 CHROME_DRIVER_ADRESS = "C:\\chromedriver.exe"

@@ -1,6 +1,6 @@
 from os import system
 import multiprocessing
-from settings import BOT
+from settings import BOT_NOTIFIER
 from bot_handler.main import bot_handler
 from tracker.main import film_tracker
 
@@ -16,7 +16,7 @@ def main():
         p2.start()
         p1.join()
         p2.join()
-        BOT.polling(non_stop=True)
+        BOT_NOTIFIER.polling(non_stop=True)
     except Exception as e:
         print(e)
 
