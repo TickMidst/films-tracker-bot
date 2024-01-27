@@ -42,12 +42,13 @@
 7. `select json`, выбрать файл `distill_settings.json` из папки `tracker` проекта
    ![watchlist](https://sun9-40.userapi.com/impf/zPB1kOGIk99jQwHoBwOrsjicGVxa2TB8gFps4w/I8A4xlUiknQ.jpg?size=602x300&quality=95&sign=2ae7e2e074558701506afecf6292bb18&type=album)
 8. `next`, `import`
+9. 
    ![watchlist](https://sun9-58.userapi.com/impf/37dunMZ7Asl5OVGegLIOfjmJnIfYFvfhvVSPiQ/yCa-FK0o0Jg.jpg?size=570x166&quality=96&sign=f44f41675003993c2d5664b09c5e603d&type=album)
    ![watchlist](https://sun9-68.userapi.com/impf/iuRzk7Ka4Dg9zwLOYKbcuzeFvghVsVTEmR1KtA/mNPruvvPHH0.jpg?size=386x166&quality=95&sign=4d7b8043cae16cb982e2cce8885f4428&type=album)
-9.   отправить боту команду `/start` чтобы подписаться на получение новых фильмов
-10. Закрыть окно `Selenium браузера`
-11. Завершить выполнение кода
-12. Добавить необходимые команды боту:
+10.  отправить боту команду `/start` чтобы подписаться на получение новых фильмов
+11. Закрыть окно `Selenium браузера`
+12. Завершить выполнение кода
+13. Добавить необходимые команды боту:
    - В настройках бота нажать `"управление ботом"`
    - Затем `"изменить команды"`
    - Отправить следующий текст:
